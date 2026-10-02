@@ -1,0 +1,35 @@
+name: Publish demo video
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download the three-minute demo video
+        run: |
+          curl --fail --location --retry 3 \
+            https://blog.oppenheimer123.xyz/zhijian/assets/zhijian-demo-3min.mp4 \
+            --output zhijian-demo-3min.mp4
+          test "$(stat --format=%s zhijian-demo-3min.mp4)" -gt 2000000
+
+      - name: Upload the video to the v1.0.0 release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release upload v1.0.0 zhijian-demo-3min.mp4 \
+            --repo "${{ github.repository }}" \
+            --clobber
+
+      - name: Publish the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release edit v1.0.0 \
+            --repo "${{ github.repository }}" \
+            --draft=false \
+            --latest
