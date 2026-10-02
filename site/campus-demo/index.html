@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="织见引导演示：AI 实时整理讨论、参与决策，并在条件变化时提醒复核。" />
+    <title>织见 · 校园场景演示</title>
+    <link rel="stylesheet" href="./styles.css?v=1" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <header class="brand"><span class="brand-mark"><i></i><i></i><i></i></span><span><strong>织见</strong><small>讨论产生可用结果</small></span></header>
+        <section class="scenario-card"><small id="scenario-label">CAMPUS DEMO</small><strong id="scenario-title">迎新晚会筹备</strong><p id="scenario-question">5000 元预算怎么分？</p></section>
+        <nav class="stage-nav" aria-label="演示章节">
+          <button type="button" data-stage="0"><span>01</span><strong>实时整理</strong><small>从讨论中识别重点</small></button>
+          <button type="button" data-stage="1"><span>02</span><strong>AI 参与</strong><small>补充角度并确认决策</small></button>
+          <button type="button" data-stage="2"><span>03</span><strong>三天后</strong><small>回看依据并触发复核</small></button>
+        </nav>
+        <div class="speaker-note"><small>演示提示</small><p id="speaker-note">点击“开始演示”，或使用 ← → 控制节奏。</p></div>
+        <footer><span class="avatar">孙</span><span><strong>孙宇杰</strong><small>演示者</small></span></footer>
+      </aside>
+
+      <main class="discussion-panel">
+        <header class="topbar">
+          <div><small>DISCUSSION SPACE</small><strong id="discussion-title">迎新晚会筹备</strong><span id="time-label">今天 09:02</span></div>
+          <div class="top-actions"><span class="live-status"><i></i> AI 实时整理已开启</span><button id="demo-mode" type="button">演示模式</button></div>
+        </header>
+        <section class="stage-strip"><div id="stage-progress"></div><span id="stage-eyebrow">第一段 · 实时整理</span><strong id="stage-title">讨论发生时，AI 同步抓住重点</strong></section>
+        <div class="feed" id="feed" aria-live="polite"></div>
+        <section class="composer"><div class="fake-input">发送消息，或 <strong>@织见机器人</strong> 邀请 AI 参与</div><button type="button">@ 织见机器人</button><button type="button" class="voice">● 语音讨论</button></section>
+      </main>
+
+      <aside class="output-panel">
+        <header><div><small>LIVE SYNTHESIS</small><strong>AI 实时整理</strong></div><span id="analysis-state"><i></i>等待讨论</span></header>
+        <div class="output-content" id="output-content"></div>
+      </aside>
+    </div>
+
+    <section class="demo-controls" aria-label="演示控制">
+      <button id="prev-step" type="button" aria-label="上一步">←</button>
+      <button id="play-demo" type="button" class="play">开始演示</button>
+      <button id="next-step" type="button" aria-label="下一步">→</button>
+      <div class="progress"><span id="step-label">0 / 12</span><div><i id="step-progress"></i></div></div>
+      <button id="restart-demo" type="button">重新开始</button>
+    </section>
+
+    <script type="module" src="./app.js?v=1"></script>
+  </body>
+</html>

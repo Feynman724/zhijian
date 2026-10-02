@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="织见：把群聊、线上会议和线下讨论放进同一个讨论空间，并生成结论、行动项和分歧记录。" />
+    <title>织见 · 讨论时间线与决策库</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css?v=20260929-3" />
+  </head>
+  <body>
+    <div class="app-frame">
+      <aside class="left-sidebar" aria-label="工作区导航">
+        <header class="workspace-brand">
+          <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span><strong>织见</strong><small>产品实验室</small></span>
+        </header>
+
+        <nav class="primary-nav" aria-label="核心功能">
+          <small class="nav-label">核心功能</small>
+          <button class="nav-item active" type="button" data-view="timeline">
+            <span class="nav-icon" aria-hidden="true">⌁</span><span>讨论空间</span><b>15</b>
+          </button>
+          <button class="nav-item" type="button" data-view="decisions">
+            <span class="nav-icon" aria-hidden="true">✓</span><span>讨论产出</span><b>3</b>
+          </button>
+        </nav>
+
+        <section class="scope-card">
+          <small>TODAY</small>
+          <strong>产品方向讨论</strong>
+          <p>优先用语音把问题谈清楚<br />AI 负责整理可用产出</p>
+        </section>
+
+        <footer class="sidebar-footer">
+          <span class="avatar violet">孙</span>
+          <span><strong>孙宇杰</strong><small>在线</small></span>
+        </footer>
+      </aside>
+
+      <main class="main-panel">
+        <header class="conversation-header">
+          <div class="conversation-title">
+            <span class="mobile-menu" aria-hidden="true">☰</span>
+            <span><strong id="view-title">产品方向讨论</strong><small id="view-subtitle">群聊、线上会议与线下讨论 · 同一个讨论空间</small></span>
+          </div>
+          <div class="conversation-actions">
+            <label class="header-search"><span aria-hidden="true">⌕</span><input id="search-input" type="search" placeholder="搜索全部上下文" autocomplete="off" /></label>
+            <button class="header-button" id="api-button" type="button">模型接入</button>
+            <button class="header-button primary" id="export-button" type="button">导出上下文</button>
+            <button class="header-button mobile-decision-toggle" id="decision-mobile-toggle" type="button">决策</button>
+          </div>
+        </header>
+
+        <section class="view-panel active" id="timeline-view" aria-label="统一讨论时间线">
+          <div class="timeline-intro">
+            <div><small>DISCUSSION SPACE</small><strong>围绕一个问题持续讨论</strong></div>
+            <div class="discussion-status"><span><i class="source-dot meeting"></i><span><b>产品方向同步会</b><small>3 人 · 语音优先</small></span></span><button id="voice-discussion-button" type="button">开始语音讨论</button></div>
+          </div>
+          <div class="message-scroll" id="message-scroll"><div id="message-list" class="message-list" aria-live="polite"></div></div>
+          <section class="composer-shell" aria-label="发送消息">
+            <form id="composer" class="composer">
+              <textarea id="composer-input" rows="1" placeholder="发送消息；输入 @织见机器人 调用 AI" aria-label="输入消息"></textarea>
+              <div class="composer-toolbar">
+                <div class="composer-tools">
+                  <button class="tool-button mention-button" id="mention-button" type="button">@ 织见机器人</button>
+                  <button class="tool-button" id="upload-button" type="button" aria-label="上传文件">＋ 文件</button>
+                  <button class="tool-button" id="record-button" type="button" aria-label="录制语音"><span class="record-dot"></span><span id="record-label">语音</span></button>
+                </div>
+                <button class="send-button" type="submit">发送</button>
+              </div>
+              <input id="file-input" type="file" accept="image/*,audio/*,.pdf,.txt,.md,.csv" hidden />
+            </form>
+          </section>
+        </section>
+
+        <section class="view-panel" id="decisions-view" aria-label="讨论产出" hidden>
+          <div class="decision-page" id="decision-page"></div>
+        </section>
+      </main>
+
+      <aside class="decision-sidebar" id="decision-sidebar" aria-label="本场讨论产出">
+        <header class="decision-sidebar-header">
+          <div><small>DISCUSSION OUTPUT</small><strong>本场讨论产出</strong></div>
+          <button class="quiet-icon" id="close-decisions" type="button" aria-label="关闭讨论产出">×</button>
+        </header>
+        <div id="decision-detail" class="decision-detail"></div>
+      </aside>
+    </div>
+
+    <dialog class="settings-dialog" id="api-dialog">
+      <form method="dialog" class="dialog-card" id="api-form">
+        <header><div><small>MODEL CONNECTION</small><h2>模型接入</h2><p>机器人使用你选择的兼容 API；配置仅保存在当前浏览器。</p></div><button class="quiet-icon" value="cancel" aria-label="关闭">×</button></header>
+        <label><span>接入方式</span><select id="provider-select"><option value="openai">OpenAI 兼容 API</option><option value="anthropic">Anthropic 兼容 API</option><option value="custom">自定义 HTTP Endpoint</option><option value="export">仅导出上下文，不直接调用</option></select></label>
+        <label><span>API Endpoint</span><input id="endpoint-input" type="url" value="https://api.openai.com/v1" /></label>
+        <label><span>模型名称</span><input id="model-input" type="text" value="gpt-5.2" /></label>
+        <label><span>API Key</span><input id="key-input" type="password" placeholder="仅保存在本地，不会写入 Demo 数据" /></label>
+        <div class="dialog-note">实际 Demo 不会发送请求。该界面用于演示模型供应商可替换的产品边界。</div>
+        <footer><button class="header-button" value="cancel">取消</button><button class="header-button primary" id="save-api" value="default">保存配置</button></footer>
+      </form>
+    </dialog>
+
+    <dialog class="settings-dialog" id="export-dialog">
+      <form method="dialog" class="dialog-card export-dialog-card" id="export-form">
+        <header><div><small>PORTABLE CONTEXT</small><h2>导出讨论上下文</h2><p>带走完整时间顺序、成员、来源、引用关系和结构化决策。</p></div><button class="quiet-icon" value="cancel" aria-label="关闭">×</button></header>
+        <div class="format-switch"><button type="button" class="active" data-format="markdown">Markdown</button><button type="button" data-format="json">JSON</button></div>
+        <pre id="export-preview" class="export-preview"></pre>
+        <footer><button class="header-button" type="button" id="copy-export">复制内容</button><button class="header-button primary" type="button" id="download-export">下载文件</button></footer>
+      </form>
+    </dialog>
+
+    <div id="toast-region" class="toast-region" aria-live="polite" aria-atomic="true"></div>
+    <script type="module" src="./src/app.js?v=20260929-3"></script>
+  </body>
+</html>
