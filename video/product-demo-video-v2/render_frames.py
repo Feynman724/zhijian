@@ -107,13 +107,13 @@ def context_frame():
     return im
 
 frames=[]
-frames.append(h.title_frame('一次讨论，跨越群聊和会议','三分钟产品演示｜连续时间线 · 会议原话 · 结构化决策','织见 · 多模态决策记忆'))
+frames.append(h.title_frame('会议说清的事，回到群聊','三分钟看懂织见：接回会议、带走上下文、让 AI 在群里参与','织见 · 讨论与决策记忆'))
 frames.append(h.pain_frame())
 frames.append(context_frame())
 for s in range(3,16): frames.append(meeting_product(s))
 frames.append(h.export_frame())
 frames.append(h.pillars_frame())
-frames.append(h.title_frame('让团队记住为什么','从群聊提出问题，到会议里说透观点，再到会后形成决定。','织见 · PRODUCT DEMO'))
+frames.append(h.title_frame('不只记住结论，也带走来路','会议原话回到群聊；上下文可导出；AI 在原讨论里参与。','织见 · PRODUCT DEMO'))
 assert len(frames)==19
 for i,im in enumerate(frames): im.save(FRAME_DIR/f'scene-{i:02d}.png',quality=95)
 print('rendered',len(frames),'frames')

@@ -1,6 +1,6 @@
 # 织见 · 织讨论，见决策
 
-织见是一套团队讨论与决策记忆原型。它把群聊、线上会议、文件和线下补充放进同一条时间线，并将团队确认的决定保存为可追溯的结构化档案。
+织见是一套团队讨论与决策记忆原型。它着重解决三个断点：会议纪要难以回到群聊上下文，跨群聊与会议的完整讨论难以带走，AI 的建议难以在原讨论里产生并被团队确认。团队决定会保存为可追溯的结构化档案。
 
 ## 在线体验
 
@@ -10,19 +10,21 @@
 
 ## 三分钟产品演示
 
-[![点击观看织见三分钟产品演示](site/homepage/assets/product-timeline.png)](https://github.com/Feynman724/zhijian/releases/download/v1.0.0/zhijian-demo-3min.mp4)
+[![点击观看织见三分钟产品演示](site/homepage/assets/product-timeline.png)](https://github.com/Feynman724/zhijian/releases/download/v1.1.0/zhijian-demo-v1.1.0.mp4)
 
 点击上方产品画面观看完整演示，也可以直接打开：
 
-- [三分钟演示视频（MP4）](https://github.com/Feynman724/zhijian/releases/download/v1.0.0/zhijian-demo-3min.mp4)
-- [中文字幕（SRT）](video/final/zhijian-demo-3min.srt)
-- [中文解说词](video/final/narration-zh.txt)
+- [三分钟演示视频（MP4）](https://github.com/Feynman724/zhijian/releases/download/v1.1.0/zhijian-demo-v1.1.0.mp4)
+- [中文字幕（SRT）](video/final/zhijian-demo-v1.1.0.srt)
+- [中文解说词](video/final/narration-v1.1.0-zh.txt)
 
 ## 现阶段解决的问题
 
-1. 把群聊、会议、文件和线下讨论中散落的想法与决策收进同一条时间线。
-2. 为每个决定保存结论、依据、反方意见、负责人、成立条件和复核触发器。
-3. 让机器人直接在群聊中参与，支持自定义模型接口，也支持导出结构化上下文。
+1. 把会议转写、原话与共享文件接回群聊里的原议题，保持跨场景的讨论连续性。
+2. 导出带有成员、时间、来源与分析结果的结构化讨论上下文，供团队自行保存或交给其他模型分析。
+3. 在群里点名机器人，让 AI 的建议回到原讨论，并由成员确认结构化决策。
+
+当前是交互演示原型。团队版 Demo 已提供 JSON 上下文导出；实际聊天平台接入和自定义模型 API 尚未实现。
 
 ## 演示流程
 

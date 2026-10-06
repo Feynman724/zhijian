@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#284c43">
   <title>织见 · 织讨论，见决策</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=1">
+  <link rel="stylesheet" href="styles.css?v=2">
 </head>
 <body>
   <a class="skip-link" href="#main">跳到正文</a>
@@ -34,33 +34,45 @@
       <div class="container hero-copy">
         <p class="eyebrow"><span></span> DECISION MEMORY · 团队讨论记忆</p>
         <h1>织讨论，<em>见决策</em></h1>
-        <p class="hero-lead">把群聊、会议、文件和线下讨论收进同一条时间线。每个决定都保留原话、依据、反方意见，以及需要重新讨论的条件。</p>
+        <p class="hero-lead">会议里讲清的事，回到原来的群聊。讨论内容可以完整导出，也能在群里直接邀请 AI 参与。织见让决定和它的来路一起留下。</p>
         <div class="hero-actions">
           <a class="button button-primary" href="/zhijian-team/">体验团队版 Demo <span>↗</span></a>
-          <a class="button button-secondary" href="#method">看看它怎么工作 <span>↓</span></a>
+          <a class="button button-secondary" href="#product-demo">看三分钟演示 <span>↓</span></a>
         </div>
         <dl class="hero-facts" aria-label="产品能力概览">
-          <div><dt>01</dt><dd>统一讨论时间线</dd></div>
-          <div><dt>02</dt><dd>结构化决策档案</dd></div>
-          <div><dt>03</dt><dd>开放模型接入</dd></div>
+          <div><dt>01</dt><dd>会议接回群聊</dd></div>
+          <div><dt>02</dt><dd>完整上下文可导出</dd></div>
+          <div><dt>03</dt><dd>AI 在群里参与</dd></div>
         </dl>
       </div>
 
-      <div class="container product-stage reveal">
+      <div class="container product-stage reveal" id="product-demo">
         <div class="stage-caption">
           <span>LIVE PRODUCT</span>
-          <strong>产品方向讨论 · 群聊与会议在同一条时间线上</strong>
+          <strong>看清一次讨论如何从群聊进入会议，再回到群聊</strong>
           <a href="/zhijian-team/">打开完整演示 ↗</a>
         </div>
-        <div class="browser-frame">
-          <div class="browser-bar" aria-hidden="true">
-            <span></span><span></span><span></span>
-            <p>blog.oppenheimer123.xyz/zhijian-team/</p>
+        <div class="browser-frame story-demo" aria-label="织见产品流程预览">
+          <div class="browser-bar" aria-hidden="true"><span></span><span></span><span></span><p>织见 · 产品方向讨论</p></div>
+          <div class="story-demo-body">
+            <div class="story-tabs" role="tablist" aria-label="产品流程">
+              <button type="button" role="tab" aria-selected="true" aria-controls="story-panel" data-story="0">01 群聊提出问题</button>
+              <button type="button" role="tab" aria-selected="false" aria-controls="story-panel" data-story="1">02 会议接回原讨论</button>
+              <button type="button" role="tab" aria-selected="false" aria-controls="story-panel" data-story="2">03 AI 参与与导出</button>
+            </div>
+            <div class="story-panel" id="story-panel" role="tabpanel" aria-live="polite">
+              <div class="story-meta"><span class="story-source">产品方向群 · 09:02</span><span class="story-step">1 / 3</span></div>
+              <h3 class="story-title">第一版先做网页，还是小程序？</h3>
+              <p class="story-quote">孙宇杰在群里提出问题。讨论从这里开始；后续会议和文件会接到同一个议题下。</p>
+              <div class="story-evidence"><span>孙宇杰 · 群聊</span><strong>“几句话讲不透，我们九点半开会继续讨论。”</strong></div>
+              <p class="story-payoff">同一个问题，持续的上下文。</p>
+            </div>
           </div>
-          <div class="demo-viewport">
-            <img src="assets/product-timeline.png" alt="织见团队版中，群聊、会议转写与共享文件进入同一条讨论时间线">
-            <a class="frame-cover" href="/zhijian-team/" aria-label="打开织见团队版产品演示"></a>
-          </div>
+        </div>
+        <p class="demo-caption">这是一段放大的交互预览。<a href="/zhijian-team/">打开完整产品 Demo ↗</a>，可逐步查看原始消息、会议记录和决策档案。</p>
+        <div class="video-feature">
+          <div><span class="kicker">THREE MINUTE DEMO</span><h2>用三分钟，<br>看懂织见的三个区别。</h2><p>会议内容回到群聊；完整上下文可以导出；AI 在原讨论里参与。视频用一场真实的产品方向讨论，把这三步连起来。</p></div>
+          <video controls preload="metadata" poster="assets/product-video-poster.jpg" aria-label="织见三分钟产品演示视频"><source src="https://blog.oppenheimer123.xyz/zhijian/assets/zhijian-demo-v1.1.0.mp4" type="video/mp4">浏览器不支持视频播放，请下载演示视频。</video>
         </div>
       </div>
     </section>
@@ -68,27 +80,27 @@
     <section class="problem section" id="problem">
       <div class="container">
         <div class="section-heading reveal">
-          <div><span class="kicker">WHY ZHIJIAN</span><h2>问题不在消息太多，<br>而在讨论失去了来路。</h2></div>
-          <p>团队做出一个决定之前，往往经历群聊、会议、文件交换和线下补充。现有工具分别保存这些内容，却没有保存它们之间的关系。</p>
+          <div><span class="kicker">WHY ZHIJIAN</span><h2>不是再做一个群聊，<br>而是补上讨论之间的断点。</h2></div>
+          <p>群聊、会议和转写各有用处。织见关注的是一个问题跨过这些场景后，观点、依据和决定能否继续连在一起，并由团队带走。</p>
         </div>
         <div class="problem-grid">
           <article class="problem-card reveal">
             <span class="card-index">01</span>
-            <h3>决定散在聊天里</h3>
-            <p>结论和过程混在几十页消息中。过几天再问“为什么这样定”，只能从头翻找。</p>
-            <small>信息有了，关系丢了</small>
+            <h3>会议纪要回不到群聊</h3>
+            <p>会上说清的理由和分歧，常常停在一份单独的纪要里。会后群聊继续推进，却接不上那段原话。</p>
+            <small>织见：会议片段关联原议题</small>
           </article>
           <article class="problem-card reveal">
             <span class="card-index">02</span>
-            <h3>会议成为孤立纪要</h3>
-            <p>会上讲清的分歧、原话与文件，没有回到会前的问题，也很难进入会后的确认。</p>
-            <small>会议结束，上下文断开</small>
+            <h3>讨论内容带不走</h3>
+            <p>复制几条消息或下载一份纪要，都不足以交代谁在何时说了什么、引用了哪份文件。</p>
+            <small>织见：按时间、来源和引用导出</small>
           </article>
           <article class="problem-card reveal">
             <span class="card-index">03</span>
-            <h3>同一个问题反复重聊</h3>
-            <p>新人加入或条件变化时，大家看不到旧决定成立的前提，只能凭印象重新讨论。</p>
-            <small>记住了结果，忘记了依据</small>
+            <h3>AI 总在讨论之外</h3>
+            <p>把内容搬进另一个聊天框再提问，会丢掉现场对话，也让建议难以回到团队确认的过程。</p>
+            <small>织见：群里点名、原处回答</small>
           </article>
         </div>
       </div>
@@ -98,7 +110,7 @@
       <div class="container">
         <div class="section-heading reveal">
           <div><span class="kicker">HOW IT WORKS</span><h2>同一场讨论，<br>沿时间自然推进。</h2></div>
-          <p>织见不替代群聊或会议。它把不同场景里的内容重新接回同一个问题，并在团队确认后生成决策档案。</p>
+          <p>织见不靠“再总结一次”区分自己。它让会议原话回到群聊，让完整上下文可导出，让 AI 直接加入原讨论，最后由人确认决策。</p>
         </div>
 
         <ol class="flow reveal">
@@ -127,17 +139,17 @@
 
           <article class="feature-row reverse reveal">
             <div class="feature-copy">
-              <span class="feature-number">02 / STRUCTURED DECISION</span>
-              <h3>保存决定，也保存它为什么成立</h3>
-              <p>决定不是一句摘要。织见同时保留支持证据、反方意见、负责人、成立条件和复核触发器。</p>
-              <ul><li>结论与责任人明确</li><li>每条依据可以回到原话</li><li>条件变化时提醒重新讨论</li></ul>
+              <span class="feature-number">02 / OPEN CONTEXT</span>
+              <h3>整段讨论可以带走，而不是困在一个平台</h3>
+              <p>导出时保留发言人、时间、来源、会议片段、文件引用和决策关系。团队可以交给自己的工具或模型继续分析。</p>
+              <ul><li>结构化格式适合再次分析</li><li>群聊与会议保持关联</li><li>决策依据可以回到原话</li></ul>
             </div>
             <div class="decision-preview">
               <header><span>D-001</span><small>已确认</small></header>
-              <h4>第一版先完成网页 Demo</h4>
-              <p>先验证讨论整理与决策确认是否被持续使用。</p>
-              <dl><div><dt>负责人</dt><dd>张轩灏</dd></div><div><dt>确认成员</dt><dd>3 / 3</dd></div><div><dt>复核条件</dt><dd>完成率低于 30%</dd></div></dl>
-              <footer><span>会议原话 2 段</span><span>共享文件 1 份</span><span>反方意见 1 条</span></footer>
+              <h4>可导出的讨论上下文</h4>
+              <p>同一议题：第一版产品入口选择</p>
+              <dl><div><dt>群聊</dt><dd>发言人 + 时间</dd></div><div><dt>会议</dt><dd>片段 + 原话</dd></div><div><dt>决策</dt><dd>依据 + 异议</dd></div></dl>
+              <footer><span>结构化文本</span><span>文件引用</span><span>模型可读取</span></footer>
             </div>
           </article>
 
@@ -145,8 +157,8 @@
             <div class="feature-copy">
               <span class="feature-number">03 / NATIVE INTELLIGENCE</span>
               <h3>机器人就在群里，不再另开一个聊天框</h3>
-              <p>需要帮助时直接点名机器人。它读取当前讨论的群聊、会议和文件，再把分析带回原来的对话。</p>
-              <ul><li>支持自定义模型接口</li><li>上下文可以按结构化格式导出</li><li>不受限于一家模型服务</li></ul>
+              <p>需要帮助时直接点名机器人。它读取当前议题的群聊、会议和文件，在群里引用证据、提出建议，再交由团队确认。</p>
+              <ul><li>建议留在群聊原处</li><li>当前 Demo 可导出讨论 JSON</li><li>自定义模型接口是下一步方向</li></ul>
             </div>
             <div class="chat-preview">
               <div class="chat-message"><span class="mini-avatar">孙</span><div><b>孙宇杰</b><p><mark>@织见机器人</mark> 结合会议原话和访谈文件，给一个可以验证的方案。</p></div></div>
@@ -208,6 +220,6 @@
     </div>
   </footer>
 
-  <script src="app.js?v=1"></script>
+  <script src="app.js?v=2"></script>
 </body>
 </html>

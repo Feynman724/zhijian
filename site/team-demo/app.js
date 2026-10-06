@@ -124,6 +124,26 @@ document.querySelector("#prev-step").addEventListener("click", () => { pause(); 
 document.querySelector("#next-step").addEventListener("click", () => { pause(); setStep(currentStep + 1); });
 document.querySelector("#restart-demo").addEventListener("click", () => { pause("开始演示"); setStep(0); });
 demoModeButton.addEventListener("click", () => { demoMode = !demoMode; document.body.classList.toggle("demo-mode", demoMode); demoModeButton.classList.toggle("active", demoMode); render(); });
+document.querySelector("#export-context").addEventListener("click", () => {
+  const visibleEvents = scenario.events.slice(0, currentStep);
+  const payload = {
+    format: "zhijian-discussion-context-v1",
+    demo: true,
+    discussion: scenario.title,
+    question: scenario.question,
+    exportedEvents: visibleEvents.length,
+    events: visibleEvents.map(({ stage, time, source, author, type, title, body, output }) => ({
+      stage, time, source, author, type, title, body,
+      analysis: output ? { label: output.label, title: output.title, body: output.body } : null
+    }))
+  };
+  const url = URL.createObjectURL(new Blob([JSON.stringify(payload, null, 2)], { type: "application/json;charset=utf-8" }));
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = "织见-讨论上下文-demo.json";
+  link.click();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+});
 document.querySelectorAll("[data-stage]").forEach((button) => button.addEventListener("click", () => {
   pause();
   const stage = Number(button.dataset.stage);

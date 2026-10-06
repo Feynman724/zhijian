@@ -28,7 +28,7 @@ def font(size):
     return ImageFont.truetype(FONT_PATH, size)
 
 
-F12, F14, F16, F18, F20, F24, F28, F34, F44, F64 = [font(x) for x in (12,14,16,18,20,24,28,34,44,64)]
+F12, F14, F16, F18, F20, F24, F28, F34, F44, F64 = [font(x) for x in (16,19,21,25,26,30,36,40,48,72)]
 
 
 def rr(d, box, r, fill, outline=None, width=1):
@@ -72,10 +72,10 @@ def avatar(d, x, y, char, color):
 
 
 def message(d, y, who, char, source, text, color=GREEN, kind="human", accent=None):
-    x0 = 165
+    x0 = 135
     d.text((x0, y+8), source, font=F12, fill=MUTED)
-    avatar(d, x0+88, y, char, color)
-    bx = x0+150
+    avatar(d, x0+135, y, char, color)
+    bx = x0+195
     bh = 100 if len(text) < 50 else 126
     fill = SURFACE
     outline = LINE
@@ -262,10 +262,10 @@ def product_frame(scene):
 
 
 def export_frame():
-    im,d=base_ui("模型与数据控制",2,"AI 可以替换，团队记忆始终属于团队")
-    d.text((180,250),"选择团队自己的 AI",font=F34,fill=INK)
-    paragraph(d,(180,310),"支持自定义 API，也可以把完整、结构化的讨论上下文导出给其他模型。",F24,MUTED,880,12,3)
-    providers=[("自定义 API","已连接",GREEN),("OpenAI","可选",SLATE),("其他模型","导出上下文",BRONZE)]
+    im,d=base_ui("开放的讨论上下文",2,"内容可以带走，模型由团队选择")
+    d.text((180,250),"完整导出当前讨论",font=F34,fill=INK)
+    paragraph(d,(180,310),"当前 Demo 可导出结构化 JSON；自定义模型接口是下一步方向。",F24,MUTED,880,12,3)
+    providers=[("群聊与会议","保留成员、时间和来源",GREEN),("文件与引用","保留原话和关联",SLATE),("结构化 JSON","交给团队选择的模型",BRONZE)]
     y=470
     for name,state,c in providers:
         rr(d,(180,y,1110,y+100),18,SURFACE,LINE,2)
@@ -273,7 +273,7 @@ def export_frame():
         d.text((270,y+23),name,font=F24,fill=INK)
         d.text((270,y+58),state,font=F16,fill=MUTED)
         y+=120
-    output_card(d,150,"团队资产","不被单一模型锁定","保留的是讨论上下文、决策结构和历史记忆。","green")
+    output_card(d,150,"团队资产","不被单一模型锁定","当前版本支持导出讨论上下文。","green")
     output_card(d,314,"标准导出","上下文可以带走","时间线、引用关系和决策字段完整输出。")
     return im
 
@@ -282,9 +282,9 @@ def pillars_frame():
     im=Image.new("RGB",(W,H),BG); d=ImageDraw.Draw(im)
     d.text((150,110),"织见现阶段只做三件事",font=F44,fill=INK)
     d.text((152,175),"把讨论变成团队可以长期使用的决策记忆",font=F24,fill=MUTED)
-    cards=[("01","统一时间线","群聊、会议、文件与线下讨论，来源清晰地进入同一条时间线。",GREEN),
-           ("02","结构化决策","结论、依据、反方意见、负责人、成立条件和复核触发器。",BRONZE),
-           ("03","原生 AI 参与","在群里直接 @AI，支持自定义 API，也支持完整上下文导出。",SLATE)]
+    cards=[("01","会议接回群聊","转写、发言人、文件回到原议题，不再是一份孤立纪要。",GREEN),
+           ("02","上下文可导出","群聊、会议和决策按结构化格式一起带走。",BRONZE),
+           ("03","AI 原处参与","群里点名机器人，由人确认建议；未来接入自定义模型。",SLATE)]
     for i,(no,t,b,c) in enumerate(cards):
         x=150+i*555
         rr(d,(x,290,x+500,820),28,SURFACE,LINE,2)
