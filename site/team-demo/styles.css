@@ -24,6 +24,21 @@ body.demo-mode .app-shell{grid-template-columns:78px minmax(560px,1fr) 390px}bod
 @media(max-width:1180px){.app-shell{grid-template-columns:190px minmax(420px,1fr) 330px}.feed{padding-inline:14px}.message-card p{font-size:14px}}
 @media(max-width:900px){.app-shell{grid-template-columns:1fr 330px}.sidebar{display:none}}
 @media(max-width:700px){.app-shell{grid-template-columns:1fr}.message{grid-template-columns:54px 30px minmax(0,1fr);gap:0 6px}.message-card p{font-size:14px}}
+
+.export-dialog{width:min(920px,calc(100vw - 32px));max-height:min(86vh,900px);padding:0;border:1px solid var(--line-strong);border-radius:18px;background:var(--surface);color:var(--ink);box-shadow:0 32px 90px rgba(18,39,30,.28)}
+.export-dialog::backdrop{background:rgba(18,33,29,.56);backdrop-filter:blur(4px)}
+.export-dialog-head{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:24px 28px 12px}
+.export-dialog-head small{color:var(--brand);font-size:11px;font-weight:850;letter-spacing:.14em}
+.export-dialog h2{margin:5px 0 0;font-size:28px;letter-spacing:-.04em}
+.export-dialog-head button{width:38px;height:38px;border:1px solid var(--line);border-radius:9px;background:var(--soft);font-size:25px;line-height:1}
+.export-dialog>p{margin:0;padding:0 28px 18px;color:var(--muted);font-size:15px;line-height:1.7}
+.export-preview-head{display:flex;justify-content:space-between;padding:14px 28px;border-block:1px solid var(--line);background:var(--brand-soft);font-size:14px}.export-preview-head span{color:var(--brand)}
+#export-preview{min-height:220px;max-height:40vh;overflow:auto;margin:0;padding:22px 28px;background:#fff;color:#27342e;font-family:ui-monospace,SFMono-Regular,Menlo,"PingFang SC",monospace;font-size:14px;line-height:1.75;white-space:pre-wrap;word-break:break-word}
+.export-actions{display:flex;justify-content:flex-end;gap:10px;padding:18px 28px;border-top:1px solid var(--line)}
+.export-actions button{min-height:44px;padding:0 16px;border:1px solid var(--brand);border-radius:9px;background:var(--surface);color:var(--brand);font-size:13px;font-weight:750}
+.export-actions button:last-child{background:var(--brand);color:#fff}
+.export-actions button:hover,.export-actions button:focus-visible{box-shadow:0 0 0 3px rgba(40,76,67,.16)}
+@media(max-width:700px){.export-dialog-head{padding:18px 18px 10px}.export-dialog>p{padding:0 18px 16px}.export-preview-head,#export-preview,.export-actions{padding-inline:18px}.export-actions{display:grid}.export-actions button{width:100%}}
 .message.meeting-start .message-card,.message.meeting-note .message-card,.message.meeting-end .message-card{border-color:#d5cddd;background:#f7f4f8}
 .message.meeting-start .message-card{box-shadow:0 9px 26px rgba(82,66,96,.07)}
 .meeting-session{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:3px 10px;margin-top:8px;padding:9px 10px;border:1px solid #d7cfdd;border-radius:8px;background:rgba(255,255,255,.72)}

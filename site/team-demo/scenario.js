@@ -4,6 +4,19 @@ export const scenario = {
   question: "群聊、会议和文件如何形成一条完整的决策时间线？",
   presenter: "孙宇杰",
   presenterInitial: "孙",
+  decision: {
+    id: "D-001",
+    conclusion: "第一版先完成网页 Demo，验证讨论整理与决策确认流程",
+    owner: "张轩灏",
+    deadline: "7 天内",
+    confirmedBy: ["孙宇杰", "卢格妤", "张轩灏"],
+    evidence: [
+      { ref: "E003", note: "会议中提出网页可以更快验证核心流程" },
+      { ref: "E005", note: "共享访谈文件补充了入口成本的证据" }
+    ],
+    dissent: { ref: "E004", note: "网页入口可能降低参与意愿" },
+    reviewTrigger: "完成讨论率低于 30% 时重新讨论入口"
+  },
   stages: [
     {
       eyebrow: "第一段 · 跨场景收集",

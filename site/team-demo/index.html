@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="织见引导演示：把群聊、线上会议和文件编织到同一条决策时间线。" />
     <title>织见 · 团队内部演示</title>
-    <link rel="stylesheet" href="./styles.css?v=4" />
+    <link rel="stylesheet" href="./styles.css?v=5" />
   </head>
   <body>
     <div class="app-shell">
@@ -45,6 +45,14 @@
       <button id="restart-demo" type="button">重新开始</button>
     </section>
 
-    <script type="module" src="./app.js?v=4"></script>
+    <dialog class="export-dialog" id="export-dialog" aria-labelledby="export-title">
+      <div class="export-dialog-head"><div><small>OPEN CONTEXT</small><h2 id="export-title">带走这场讨论</h2></div><button type="button" id="close-export" aria-label="关闭导出预览">×</button></div>
+      <p>按发生顺序保留群聊、会议原话、共享文件和 AI 建议；决策会附上依据与复核条件。</p>
+      <div class="export-preview-head"><strong>Markdown 预览</strong><span id="export-count">0 条记录</span></div>
+      <pre id="export-preview"></pre>
+      <div class="export-actions"><button type="button" id="download-json">下载 JSON · 供程序处理</button><button type="button" id="download-markdown">下载 Markdown · 可直接阅读 / 发给 AI</button></div>
+    </dialog>
+
+    <script type="module" src="./app.js?v=5"></script>
   </body>
 </html>

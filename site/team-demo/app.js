@@ -1,4 +1,5 @@
-import { scenario } from "./scenario.js?v=3";
+import { scenario } from "./scenario.js?v=5";
+import { buildContext, toMarkdown } from "./export-context.js?v=1";
 
 const feed = document.querySelector("#feed");
 const outputContent = document.querySelector("#output-content");
@@ -124,26 +125,27 @@ document.querySelector("#prev-step").addEventListener("click", () => { pause(); 
 document.querySelector("#next-step").addEventListener("click", () => { pause(); setStep(currentStep + 1); });
 document.querySelector("#restart-demo").addEventListener("click", () => { pause("开始演示"); setStep(0); });
 demoModeButton.addEventListener("click", () => { demoMode = !demoMode; document.body.classList.toggle("demo-mode", demoMode); demoModeButton.classList.toggle("active", demoMode); render(); });
-document.querySelector("#export-context").addEventListener("click", () => {
-  const visibleEvents = scenario.events.slice(0, currentStep);
-  const payload = {
-    format: "zhijian-discussion-context-v1",
-    demo: true,
-    discussion: scenario.title,
-    question: scenario.question,
-    exportedEvents: visibleEvents.length,
-    events: visibleEvents.map(({ stage, time, source, author, type, title, body, output }) => ({
-      stage, time, source, author, type, title, body,
-      analysis: output ? { label: output.label, title: output.title, body: output.body } : null
-    }))
-  };
-  const url = URL.createObjectURL(new Blob([JSON.stringify(payload, null, 2)], { type: "application/json;charset=utf-8" }));
+const exportDialog = document.querySelector("#export-dialog");
+const contextForExport = () => buildContext(scenario, currentStep);
+
+function downloadContext(content, type, extension) {
+  const url = URL.createObjectURL(new Blob([content], { type }));
   const link = document.createElement("a");
   link.href = url;
-  link.download = "织见-讨论上下文-demo.json";
+  link.download = `织见-产品方向讨论-demo.${extension}`;
   link.click();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+document.querySelector("#export-context").addEventListener("click", () => {
+  const context = contextForExport();
+  document.querySelector("#export-count").textContent = `${context.exportedEvents} 条记录${context.decisions.length ? " · 1 项决策" : ""}`;
+  document.querySelector("#export-preview").textContent = toMarkdown(context);
+  exportDialog.showModal();
 });
+document.querySelector("#close-export").addEventListener("click", () => exportDialog.close());
+document.querySelector("#download-json").addEventListener("click", () => downloadContext(JSON.stringify(contextForExport(), null, 2), "application/json;charset=utf-8", "json"));
+document.querySelector("#download-markdown").addEventListener("click", () => downloadContext(toMarkdown(contextForExport()), "text/markdown;charset=utf-8", "md"));
 document.querySelectorAll("[data-stage]").forEach((button) => button.addEventListener("click", () => {
   pause();
   const stage = Number(button.dataset.stage);

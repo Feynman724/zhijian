@@ -106,13 +106,64 @@ def context_frame():
         x+=405
     return im
 
+def export_dialog_frame():
+    im,d=h.base_ui('产品方向讨论',2,'会后回到群聊，把跨场景上下文变成决定')
+    h.message(d,240,'孙宇杰','孙','10:12 · 决策确认','D-001 已由三人确认。现在把整场讨论带走。',h.GREEN,'decision')
+    h.rr(d,(940,42,1218,88),10,h.GREEN)
+    d.text((961,50),'导出上下文  ↗',font=h.F20,fill='white')
+    d.rectangle((0,0,1920,1080),fill=(24,33,30,90)) if im.mode=='RGBA' else None
+    h.rr(d,(370,118,1550,855),24,h.SURFACE,h.GREEN,3)
+    d.text((424,151),'OPEN CONTEXT',font=h.F18,fill=h.GREEN)
+    d.text((424,193),'带走这场讨论',font=h.F44,fill=h.INK)
+    d.text((424,273),'群聊、会议原话、共享文件和决策，按原顺序保留。',font=h.F24,fill=h.MUTED)
+    h.rr(d,(422,335,1498,673),14,'#F7F8F4',h.LINE,2)
+    d.text((450,358),'Markdown 预览 · 14 条记录 · 1 项决策',font=h.F20,fill=h.GREEN)
+    lines=[
+      '# 产品方向讨论',
+      'E001 · 09:02 · 产品方向群 · 孙宇杰',
+      'E003 · 09:34 · 产品同步会 · 张轩灏',
+      'E004 · 09:38 · 产品同步会 · 卢格妤',
+      'E005 · 09:42 · 会议共享文件 · 访谈摘录.pdf',
+      'D-001 · 结论 / 依据 / 反方意见 / 复核条件',
+    ]
+    for i,line in enumerate(lines): d.text((452,409+i*40),line,font=h.F20,fill=h.INK if i<2 else h.MUTED)
+    h.rr(d,(700,721,1050,791),12,h.SURFACE,h.GREEN,2)
+    d.text((743,739),'下载 JSON',font=h.F24,fill=h.GREEN)
+    h.rr(d,(1070,721,1500,791),12,h.GREEN)
+    d.text((1102,739),'下载 Markdown',font=h.F24,fill='white')
+    return im
+
+def export_file_frame():
+    im=Image.new('RGB',(1920,1080),h.BG); d=ImageDraw.Draw(im)
+    h.rr(d,(78,45,1842,1025),26,h.SURFACE,h.LINE,2)
+    d.text((136,95),'织见-产品方向讨论-demo.md',font=h.F28,fill=h.GREEN)
+    d.text((136,154),'一份人能读、模型也能读的讨论记录',font=h.F44,fill=h.INK)
+    d.text((136,232),'不只有结论：每条消息保留时间、来源、发言人和原文。',font=h.F24,fill=h.MUTED)
+    h.rr(d,(132,304,1785,873),18,'#F7F8F4',h.LINE,2)
+    d.text((180,347),'# 产品方向讨论',font=h.F28,fill=h.GREEN)
+    rows=[
+      ('E001','09:02 · 产品方向群','孙宇杰：第一版先做网页还是小程序？'),
+      ('E003','09:34 · 产品同步会','张轩灏：网页能更快验证核心流程。'),
+      ('E004','09:38 · 产品同步会','卢格妤：网页可能增加进入成本。'),
+      ('E005','09:42 · 会议共享文件','9 月用户访谈摘录.pdf · 关联 E004'),
+    ]
+    for i,(ref,meta,body) in enumerate(rows):
+      y=415+i*86
+      d.text((180,y),ref,font=h.F20,fill=h.BRONZE)
+      d.text((305,y),meta,font=h.F20,fill=h.GREEN)
+      d.text((725,y),body,font=h.F20,fill=h.INK)
+      if i<3:d.line((180,y+58,1735,y+58),fill=h.LINE,width=2)
+    h.rr(d,(165,785,1750,850),10,h.GREEN_SOFT)
+    d.text((188,800),'D-001 结论 · 依据 E003/E005 · 反方意见 E004 · 复核线 30%',font=h.F20,fill=h.GREEN_DARK)
+    return im
+
 frames=[]
 frames.append(h.title_frame('会议说清的事，回到群聊','三分钟看懂织见：接回会议、带走上下文、让 AI 在群里参与','织见 · 讨论与决策记忆'))
 frames.append(h.pain_frame())
 frames.append(context_frame())
 for s in range(3,16): frames.append(meeting_product(s))
-frames.append(h.export_frame())
-frames.append(h.pillars_frame())
+frames.append(export_dialog_frame())
+frames.append(export_file_frame())
 frames.append(h.title_frame('不只记住结论，也带走来路','会议原话回到群聊；上下文可导出；AI 在原讨论里参与。','织见 · PRODUCT DEMO'))
 assert len(frames)==19
 for i,im in enumerate(frames): im.save(FRAME_DIR/f'scene-{i:02d}.png',quality=95)

@@ -10,13 +10,15 @@
 
 ## 三分钟产品演示
 
-[![点击观看织见三分钟产品演示](site/homepage/assets/product-timeline.png)](https://github.com/Feynman724/zhijian/releases/download/v1.1.0/zhijian-demo-v1.1.0.mp4)
+[![点击观看织见三分钟产品演示](site/homepage/assets/product-video-poster.jpg)](https://github.com/Feynman724/zhijian/releases/download/v1.2.0/zhijian-demo-v1.2.0.mp4)
 
 点击上方产品画面观看完整演示，也可以直接打开：
 
-- [三分钟演示视频（MP4）](https://github.com/Feynman724/zhijian/releases/download/v1.1.0/zhijian-demo-v1.1.0.mp4)
-- [中文字幕（SRT）](video/final/zhijian-demo-v1.1.0.srt)
-- [中文解说词](video/final/narration-v1.1.0-zh.txt)
+- [三分钟演示视频（MP4）](https://github.com/Feynman724/zhijian/releases/download/v1.2.0/zhijian-demo-v1.2.0.mp4)
+- [中文字幕（SRT）](video/final/zhijian-demo-v1.2.0.srt)
+- [中文解说词](video/final/narration-v1.2.0-zh.txt)
+- [演示中的 Markdown 导出示例](site/team-demo/examples/产品方向讨论-导出示例.md)
+- [对应的 JSON 导出示例](site/team-demo/examples/产品方向讨论-导出示例.json)
 
 ## 现阶段解决的问题
 
@@ -24,7 +26,7 @@
 2. 导出带有成员、时间、来源与分析结果的结构化讨论上下文，供团队自行保存或交给其他模型分析。
 3. 在群里点名机器人，让 AI 的建议回到原讨论，并由成员确认结构化决策。
 
-当前是交互演示原型。团队版 Demo 已提供 JSON 上下文导出；实际聊天平台接入和自定义模型 API 尚未实现。
+当前是交互演示原型。团队版 Demo 可预览并下载 Markdown 或 JSON 上下文；实际聊天平台接入和自定义模型 API 尚未实现。
 
 ## 演示流程
 
