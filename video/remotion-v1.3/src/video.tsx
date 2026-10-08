@@ -12,7 +12,14 @@ const titles=[
  ['决策不是终点','条件改变，提醒团队重谈'],['开放式上下文','预览并导出 Markdown / JSON'],['消息可带走','发言、来源、证据与决定完整保留'],['织讨论 · 见决策','每个决定，都找得到来处']
 ];
 const tags=['定位','痛点','方案','群聊','会议','观点','分歧','文件','时间线','群内 AI','建议','反方意见','决策','回溯','数据','复核','导出','开放','织见'];
-const focus:Record<number,[number,number,number,number]>={3:[300,170,950,350],4:[280,180,970,490],5:[280,210,970,330],6:[280,270,970,340],7:[300,250,960,500],8:[290,180,980,650],9:[300,210,950,330],10:[310,260,940,390],11:[300,380,950,320],12:[300,210,950,470],13:[300,220,950,380],14:[300,260,960,450],15:[300,400,950,340]};
+// Source-image coordinates. Each box targets one actual message or the meeting-return card.
+const focus:Record<number,[number,number,number,number]>={
+  3:[330,222,892,100], 4:[330,338,892,100], 5:[330,454,892,100],
+  6:[330,570,892,100], 7:[330,686,892,100], 8:[315,790,907,110],
+  9:[330,222,892,100], 10:[330,338,892,100], 11:[330,454,892,100],
+  12:[330,570,892,100], 13:[330,338,892,100], 14:[330,454,892,100],
+  15:[330,570,892,100],
+};
 const clamp=(v:number,a:number,b:number)=>Math.max(a,Math.min(b,v));
 const ease=(v:number)=>1-Math.pow(1-v,3);
 
@@ -25,8 +32,10 @@ const Scene:React.FC<{i:number,local:number,duration:number}> = ({i,local,durati
   <div style={{position:'absolute',top:42,left:64,color:C.cream,fontSize:36,fontWeight:800,letterSpacing:3}}>织见 <span style={{fontSize:20,fontWeight:500,color:C.mint,letterSpacing:1}}>ZHĪJIÀN / PRODUCT WALKTHROUGH</span></div>
   <div style={{position:'absolute',top:43,right:60,color:C.mint,fontSize:25,fontVariantNumeric:'tabular-nums'}}>{String(i+1).padStart(2,'0')} / 19</div>
   <div style={{position:'absolute',left:62,top:128,width:1440,height:810,borderRadius:24,background:C.white,overflow:'hidden',boxShadow:'0 28px 75px #071b1599',border:'1px solid #799688'}}>
-    <Img src={staticFile(`frames/scene-${String(i).padStart(2,'0')}.png`)} style={{width:'100%',height:'100%',objectFit:'cover',transform:`scale(${screenshotScale})`,transformOrigin: i<3?'40% 46%':'46% 42%'}}/>
-    {box&&<div style={{position:'absolute',left:box[0]*.75,top:box[1]*.75,width:box[2]*.75,height:box[3]*.75,border:`5px solid ${C.bronze}`,borderRadius:18,boxShadow:'0 0 0 999px #092a2121, 0 0 32px #c29b6877',opacity:clamp((local-1.2)/.45,0,1),transform:`scale(${.94+.06*clamp((local-1.2)/.5,0,1)})`,transformOrigin:'center'}}/>}
+    <div style={{position:'relative',width:'100%',height:'100%',transform:`scale(${screenshotScale})`,transformOrigin:i<3?'40% 46%':'46% 42%'}}>
+      <Img src={staticFile(`frames/scene-${String(i).padStart(2,'0')}.png`)} style={{width:'100%',height:'100%',objectFit:'cover'}}/>
+      {box&&<div style={{position:'absolute',left:box[0]*.75,top:box[1]*.75,width:box[2]*.75,height:box[3]*.75,border:`4px solid ${C.bronze}`,borderRadius:13,boxShadow:'0 0 0 999px #092a2119, 0 0 24px #c29b6866',opacity:clamp((local-1.2)/.45,0,1),pointerEvents:'none'}}/>}
+    </div>
   </div>
   <div style={{position:'absolute',left:1545,top:158,width:308,height:700,display:'flex',flexDirection:'column',alignItems:'flex-start',transform:`translateY(${(1-enter)*38}px)`}}>
     <div style={{border:`1px solid ${C.line}`,borderRadius:100,padding:'12px 23px',fontSize:23,color:C.bronze,letterSpacing:3,fontWeight:700}}>{tags[i]}</div>

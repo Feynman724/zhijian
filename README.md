@@ -14,14 +14,14 @@
 
 ## 三分钟产品演示
 
-[![点击观看织见三分钟产品演示](site/homepage/assets/product-video-poster.jpg)](https://github.com/Feynman724/zhijian/releases/download/v1.3.0/zhijian-demo-v1.3.0-web.mp4)
+[![点击观看织见三分钟产品演示](site/homepage/assets/product-video-poster.jpg)](https://github.com/Feynman724/zhijian/releases/download/v1.3.1/zhijian-demo-v1.3.1-web.mp4)
 
 点击上方产品画面观看完整演示，也可以直接打开：
 
-- [三分钟演示视频（1080p MP4）](https://github.com/Feynman724/zhijian/releases/download/v1.3.0/zhijian-demo-v1.3.0-web.mp4)
+- [三分钟演示视频（1080p MP4）](https://github.com/Feynman724/zhijian/releases/download/v1.3.1/zhijian-demo-v1.3.1-web.mp4)
 - [Remotion 动效工程](video/remotion-v1.3/)
-- [中文字幕（SRT）](video/final/zhijian-demo-v1.3.0.srt)
-- [中文解说词](video/final/narration-v1.3.0-zh.txt)
+- [中文字幕（SRT）](video/final/zhijian-demo-v1.3.1.srt)
+- [中文解说词](video/final/narration-v1.3.1-zh.txt)
 - [演示中的 Markdown 导出示例](site/team-demo/examples/产品方向讨论-导出示例.md)
 - [对应的 JSON 导出示例](site/team-demo/examples/产品方向讨论-导出示例.json)
 

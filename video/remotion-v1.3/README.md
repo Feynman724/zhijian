@@ -1,4 +1,4 @@
-# 织见演示视频 v1.3.0
+# 织见演示视频 v1.3.1
 
 Remotion 工程。画面以网页演示的 19 张高清场景帧为底，加入章节标题、局部聚焦、缓慢镜头推进、进度线和按解说时序分段的中文字幕。颜色沿用织见网页的深绿、暖白与铜色。
 
@@ -10,4 +10,4 @@ npm run studio
 npm run render
 ```
 
-成片：`../final/zhijian-demo-v1.3.0.mp4`（1080p 母版）。`../final/zhijian-demo-v1.3.0-web.mp4` 为网页播放压缩版。
+成片：`../final/zhijian-demo-v1.3.1.mp4`（1080p 母版）。`../final/zhijian-demo-v1.3.1-web.mp4` 为网页播放压缩版。
