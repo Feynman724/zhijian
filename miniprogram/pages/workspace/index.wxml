@@ -1,0 +1,51 @@
+<view class="app">
+  <view class="heading">
+    <view class="brand"><view class="brand-mark"><view></view><view></view><view></view></view><view><text class="brand-name">织见</text><text class="brand-caption">织讨论，见决策</text></view></view>
+    <button class="header-action" bindtap="openExport">导出 ↗</button>
+  </view>
+
+  <view class="workspace-card">
+    <view class="workspace-label">团队空间 · 产品实验室</view>
+    <view class="workspace-title">{{title}}</view>
+    <view class="workspace-question">{{question}}</view>
+    <view class="members"><text class="member">孙</text><text class="member bronze">卢</text><text class="member slate">张</text><text>孙宇杰 · 卢格妤 · 张轩灏</text></view>
+  </view>
+
+  <view class="tabbar">
+    <view class="tab {{tab === 'timeline' ? 'selected' : ''}}" data-tab="timeline" bindtap="selectTab">讨论<text>{{counts.events}}</text></view>
+    <view class="tab {{tab === 'meeting' ? 'selected' : ''}}" data-tab="meeting" bindtap="selectTab">会议<text>{{counts.meeting}}</text></view>
+    <view class="tab {{tab === 'decisions' ? 'selected' : ''}}" data-tab="decisions" bindtap="selectTab">决策<text>{{counts.decisions}}</text></view>
+  </view>
+
+  <view wx:if="{{tab === 'timeline'}}" class="section">
+    <view class="section-head"><view><text class="eyebrow">UNIFIED TIMELINE</text><text class="section-title">同一个议题，同一条时间线</text></view><text class="section-count">{{counts.events}} 条</text></view>
+    <view class="source-hint"><text class="dot chat"></text>群聊 <text class="dot meeting"></text>会议 <text class="dot file"></text>文件 <text class="dot bot"></text>机器人</view>
+    <view class="demo-notice">演示版：机器人使用预置决策规则回复，尚未连接真实模型。</view>
+    <view class="timeline">
+      <view wx:for="{{events}}" wx:key="ref" class="event {{item.isMeeting ? 'event-meeting' : ''}} {{item.isBot ? 'event-bot' : ''}}">
+        <view class="event-rail"><text class="event-time">{{item.time}}</text><view class="rail-dot {{item.isMeeting ? 'meeting' : ''}} {{item.isFile ? 'file' : ''}} {{item.isBot ? 'bot' : ''}}"></view></view>
+        <view class="event-card"><view class="event-top"><view class="avatar {{item.isMeeting ? 'purple' : ''}} {{item.isBot ? 'dark' : ''}}">{{item.initials}}</view><view class="event-author"><text>{{item.author}}</text><text class="event-source">{{item.source}} · {{item.ref}}</text></view></view><view class="event-title">{{item.title}}</view><view class="event-body">{{item.body}}</view><view wx:if="{{item.output}}" class="event-analysis"><text class="analysis-kicker">织见整理</text><text>{{item.output.title}} · {{item.output.body}}</text></view></view>
+      </view>
+    </view>
+    <view class="composer"><input value="{{input}}" bindinput="onInput" placeholder="发消息，或 @织见机器人提问" confirm-type="send" bindconfirm="send" /><view class="composer-actions"><button class="tool-button" bindtap="mentionBot">@ 织见</button><button class="tool-button" bindtap="chooseFile">＋ 文件</button><button class="send-button" bindtap="send">发送</button></view></view>
+  </view>
+
+  <view wx:if="{{tab === 'meeting'}}" class="section meeting-section">
+    <view class="section-head"><view><text class="eyebrow purple-text">MEETING CONTEXT</text><text class="section-title">会议接回原讨论</text></view></view>
+    <view class="meeting-banner"><view class="meeting-symbol">会</view><view><text class="meeting-title">产品同步会</text><text class="meeting-subtitle">与「产品方向讨论」关联 · {{counts.meeting}} 条记录</text></view></view>
+    <view class="meeting-note">会议记录在这里集中查看，也会出现在讨论时间线。两处引用同一条记录，不另起一份孤立纪要。</view>
+    <view wx:for="{{meetingEvents}}" wx:key="ref" class="meeting-row"><view class="meeting-row-head"><text>{{item.time}} · {{item.author}}</text><text>{{item.ref}}</text></view><view class="meeting-row-title">{{item.title}}</view><view class="meeting-row-body">{{item.body}}</view></view>
+    <view class="meeting-actions"><button wx:if="{{!meetingActive}}" class="primary" bindtap="startMeeting">＋ 开始一场会议</button><button wx:else class="outline" bindtap="endMeeting">结束会议</button><button class="outline" bindtap="chooseFile">添加共享文件</button></view>
+    <view wx:if="{{meetingActive}}" class="meeting-input"><textarea value="{{meetingInput}}" bindinput="onMeetingInput" placeholder="手动记录发言；演示版暂不提供自动转写" auto-height maxlength="2000" /><button bindtap="addMeetingNote">记录发言并同步到时间线</button></view>
+  </view>
+
+  <view wx:if="{{tab === 'decisions'}}" class="section decision-section">
+    <view class="section-head"><view><text class="eyebrow">STRUCTURED DECISION</text><text class="section-title">决定有出处，也有复核条件</text></view></view>
+    <view class="decision-card"><view class="decision-top"><text>{{decisions[0].id}}</text><text class="confirmed">三人已确认</text></view><view class="decision-title">{{decisions[0].conclusion}}</view><view class="decision-grid"><view><text>负责人</text><text>{{decisions[0].owner}}</text></view><view><text>完成期限</text><text>{{decisions[0].deadline}}</text></view></view><view class="decision-block"><text class="block-label">支持依据</text><view wx:for="{{decisions[0].evidence}}" wx:for-item="evidence" wx:key="ref" class="evidence"><text>{{evidence.ref}}</text><text>{{evidence.note}}</text></view></view><view class="decision-block"><text class="block-label">保留的反方意见</text><view class="decision-copy">{{decisions[0].dissent.ref}} · {{decisions[0].dissent.note}}</view></view><view class="decision-block"><text class="block-label">何时重新讨论</text><view class="decision-copy">{{decisions[0].reviewTrigger}}</view></view><view class="decision-footer">确认成员：孙宇杰 · 卢格妤 · 张轩灏</view></view>
+    <button class="outline full" bindtap="openExport">导出完整讨论与决策</button>
+  </view>
+
+  <view class="bottom-note">演示数据保存在本机 · <text bindtap="clearLocal">清除新增内容</text></view>
+
+  <view wx:if="{{exportOpen}}" class="modal-backdrop" bindtap="closeExport"><view class="export-sheet" catchtap="noop"><view class="sheet-grip"></view><view class="sheet-heading"><view><text class="eyebrow">OPEN CONTEXT</text><text class="sheet-title">带走完整讨论</text></view><text class="sheet-close" bindtap="closeExport">×</text></view><view class="sheet-description">消息按时间排列，保留来源、发言人、会议原话、AI 整理和结构化决策。可复制给你选择的模型。</view><view class="format-switch"><view class="{{exportFormat === 'markdown' ? 'active' : ''}}" data-format="markdown" bindtap="setExportFormat">Markdown</view><view class="{{exportFormat === 'json' ? 'active' : ''}}" data-format="json" bindtap="setExportFormat">JSON</view></view><scroll-view scroll-y class="preview"><text selectable>{{exportPreview}}</text></scroll-view><view class="sheet-actions"><button class="outline" bindtap="saveExport">保存文件</button><button class="primary" bindtap="copyExport">复制内容</button></view></view></view>
+</view>

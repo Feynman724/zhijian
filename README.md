@@ -8,6 +8,10 @@
 - [团队协作 Demo](https://blog.oppenheimer123.xyz/zhijian-team/)
 - [校园场景 Demo](https://blog.oppenheimer123.xyz/zhijian-campus/)
 
+## 微信小程序演示版
+
+[小程序项目与导入说明](miniprogram/README.md)。原生界面已实现统一时间线、会议记录、决策详情和 Markdown/JSON 导出；当前使用本机演示数据，账号注册、真实模型及跨设备同步尚未接入。
+
 ## 三分钟产品演示
 
 [![点击观看织见三分钟产品演示](site/homepage/assets/product-video-poster.jpg)](https://github.com/Feynman724/zhijian/releases/download/v1.2.0/zhijian-demo-v1.2.0.mp4)

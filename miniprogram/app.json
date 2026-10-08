@@ -1,0 +1,11 @@
+{
+  "pages": ["pages/workspace/index"],
+  "window": {
+    "navigationBarTitleText": "织见",
+    "navigationBarBackgroundColor": "#fbfaf7",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#e9e8e2"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

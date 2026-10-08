@@ -1,0 +1,14 @@
+{
+  "description": "织见微信小程序演示版",
+  "miniprogramRoot": "./",
+  "projectname": "织见",
+  "appid": "touristappid",
+  "setting": {
+    "urlCheck": true,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "minified": true
+  },
+  "compileType": "miniprogram"
+}
