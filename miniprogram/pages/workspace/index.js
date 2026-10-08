@@ -1,4 +1,4 @@
-const scenario = require('../../data/scenario.json');
+const scenario = require('../../data/scenario.js');
 const { buildContext, toMarkdown, answerQuestion } = require('../../lib/context.js');
 
 const STORE_KEY = 'zhijian-mini-events-v1';

@@ -6,3 +6,4 @@ node_modules/
 work/
 *.log
 /video/final/*.mp4
+miniprogram/project.private.config.json

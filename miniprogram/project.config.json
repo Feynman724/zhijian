@@ -1,8 +1,8 @@
 {
   "description": "织见微信小程序演示版",
   "miniprogramRoot": "./",
-  "projectname": "织见",
-  "appid": "touristappid",
+  "projectname": "织见讨论",
+  "appid": "wx557ddbcab0eefaaf",
   "setting": {
     "urlCheck": true,
     "es6": true,

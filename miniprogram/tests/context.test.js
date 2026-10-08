@@ -1,8 +1,10 @@
 const assert = require('node:assert/strict');
 const scenario = require('../data/scenario.json');
+const runtimeScenario = require('../data/scenario.js');
 const { buildContext, toMarkdown, answerQuestion } = require('../lib/context.js');
 
 const context = buildContext(scenario, scenario.events, [scenario.decision]);
+assert.deepEqual(runtimeScenario, scenario);
 const markdown = toMarkdown(context);
 assert.equal(context.events.length, scenario.events.length);
 assert.equal(context.decisions[0].id, 'D-001');
