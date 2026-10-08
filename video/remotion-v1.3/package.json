@@ -1,0 +1,20 @@
+{
+  "name": "zhijian-remotion-demo",
+  "private": true,
+  "version": "1.3.0",
+  "scripts": {
+    "studio": "remotion studio src/index.tsx --no-open",
+    "render": "remotion render src/index.tsx ZhijianDemo ../final/zhijian-demo-v1.3.0.mp4 --codec h264 --crf 20"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.506",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "remotion": "4.0.506"
+  },
+  "devDependencies": {
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "typescript": "^5.9.3"
+  }
+}
